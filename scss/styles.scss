@@ -1,0 +1,1577 @@
+@use "sass:map";
+
+$colors: (
+  primary: #3B4754,
+  secondary: #798DA3,
+  accent: #29323D,
+  background: #e3e6e2,
+  white: #ffffff,
+  black: #000000,
+  text: #3B4754,
+  subtext: #798DA3,
+  );
+
+$font-stack: (
+    'Open Sans', sans-serif
+);
+
+
+/* Mixins */
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin button-style($bg-color, $text-color, $border-color, $margin: null) {
+  padding: 0px 10px;
+  background: $bg-color;
+  color: $text-color;
+  border-color: $border-color;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  @include font-style("button");
+  @if $margin != null {
+    margin: $margin;
+  }
+  &:hover {
+    background-color: $text-color;
+    color: $bg-color;
+  }
+
+}
+  
+
+@mixin font-style($tag) {
+    font-family: "Open Sans";
+    font-size: map.get($font-sizes, $tag);
+    line-height: map.get($line-heights, $tag);
+    font-weight: map.get($font-weights, $tag);
+    color: map.get($colors, $tag);
+    text-align: center;
+    display: block;
+    margin: auto;
+  }
+ @mixin text-style($size) {
+    font-family: "Open Sans";
+    text-align: center;
+    display: block;
+    margin: auto;
+    font-size: map.get($font-sizes, $size);
+  }
+  
+
+/* Extend */
+%default-text {
+  font-family: $font-stack;
+  color: map.get($colors, primary);
+}
+
+%default-heading {
+  @extend %default-text;
+  font-weight: 500;
+}
+%centered-text {
+    text-align: center;
+    display: block;
+    margin: auto;
+  }
+
+ %centered-block {
+    text-align: center;
+    display: block;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  %flex-center {
+    display: flex;
+    align-items: center;
+  }
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @extend %default-text;
+  margin: 0;
+  padding: 0;
+  background-color: map.get($colors, white);
+  animation: fadeIn 0.5s ease-in-out forwards;
+  width: 100%; 
+  max-width: 1350px;
+  margin: 0 auto; // Solo centrar horizontalmente
+}
+
+header {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  max-width: 1350px;
+  padding: 10px 0;
+  text-align: center;
+  @include flex-center(row, space-between, center);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: map.get($colors, white);
+
+  .navbar-brand.logo {
+    width: 50px;
+    margin-right: 450px;
+    height: auto;
+    margin-left: 30px;
+
+    img {
+      width: 30px;
+      height: 33px;
+    }
+  }
+
+  .navbar {
+    width: 100%;
+    background-color: transparent !important;
+    padding: 0.5rem 1rem;
+    
+    .navbar-nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      @include flex-center(row, flex-end, center);
+
+      .nav-item {
+        margin-left: 15px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        .nav-link {
+          display: block;
+          padding: 10px 20px;
+          text-decoration: none;
+          color: map.get($colors, primary);
+          font-weight: 600;
+          border-radius: 4px;
+          font-size: 16px;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: map.get($colors, background);
+            color: map.get($colors, accent);
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Hero Section / Portada */
+.hero-section {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  @include flex-center(column, center, center);
+  background-color: map.get($colors, background);
+  text-align: center;
+  padding: 2rem;
+  margin-bottom: 0px;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-family: $font-stack;
+  font-size: 4rem;
+  font-weight: 800;
+  color: map.get($colors, primary);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.hero-subtitle {
+  font-family: $font-stack;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: map.get($colors, secondary);
+  margin-bottom: 3rem;
+  line-height: 1.4;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.btn-about {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: map.get($colors, primary);
+  color: map.get($colors, white);
+  text-decoration: none;
+  font-family: $font-stack;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  
+  &:hover {
+    background-color: map.get($colors, accent);
+    color: map.get($colors, white);
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+}
+
+/* Asegurar que el header sea visible */
+#header-placeholder {
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Estilos adicionales para páginas internas */
+main {
+  padding: 0; // Removido padding para la página principal
+  margin: 0; // Asegurar que no hay márgenes
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  // Para páginas internas, restaurar el padding
+  &.internal-page {
+    padding: 20px;
+  }
+}
+
+section {
+  margin-bottom: 40px;
+  
+  h2 {
+    font-size: 2.5rem;
+    color: map.get($colors, primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+    color: map.get($colors, secondary);
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: map.get($colors, text);
+  }
+  
+  ul {
+    margin-bottom: 1rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+      color: map.get($colors, text);
+    }
+  }
+  
+  a {
+    color: map.get($colors, primary);
+    text-decoration: none;
+    
+    &:hover {
+      color: map.get($colors, accent);
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: map.get($colors, background);
+  color: map.get($colors, secondary);
+  margin-top: 0; // Removido el margen superior para eliminar el espacio
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  border-top: 2px solid map.get($colors, accent); // Línea gris oscura en la parte superior
+}
+
+/* ============================================
+   SECCIÓN PROYECTOS - DISEÑO MODERNO
+   ============================================ */
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  background-color: map.get($colors, white);
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 60px;
+  
+  .projects-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: map.get($colors, primary);
+    margin-bottom: 1rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, map.get($colors, primary), map.get($colors, secondary));
+      border-radius: 2px;
+    }
+    
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .projects-subtitle {
+    font-size: 1.2rem;
+    color: map.get($colors, secondary);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.project-card {
+  background: map.get($colors, white);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(map.get($colors, secondary), 0.1);
+  position: relative;
+  
+  &:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    
+    .project-content .project-title {
+      color: map.get($colors, accent);
+    }
+    
+    .project-tech-stack .tech-tag {
+      transform: scale(1.05);
+    }
+  }
+  
+  .project-header {
+    padding: 30px 30px 0;
+    
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: map.get($colors, primary);
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+      line-height: 1.3;
+    }
+    
+    .project-type {
+      font-size: 0.9rem;
+      color: map.get($colors, secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background: map.get($colors, accent);
+        border-radius: 1px;
+      }
+    }
+  }
+  
+  .project-content {
+    padding: 0 30px 25px;
+    
+    .project-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: map.get($colors, text);
+      margin-bottom: 25px;
+    }
+    
+    .project-highlight {
+      font-weight: 600;
+      color: map.get($colors, primary);
+    }
+  }
+  
+  .project-tech-stack {
+    padding: 0 30px 25px;
+    
+    .tech-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: map.get($colors, primary);
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      .tech-tag {
+        background: linear-gradient(135deg, map.get($colors, background), #f8f9fa);
+        color: map.get($colors, primary);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: 1px solid rgba(map.get($colors, secondary), 0.2);
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background: map.get($colors, primary);
+          color: map.get($colors, white);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+  
+  .project-links {
+    padding: 25px 30px 30px;
+    border-top: 1px solid rgba(map.get($colors, secondary), 0.1);
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      &:hover::before {
+        left: 100%;
+      }
+      
+      &.repo-link {
+        background: map.get($colors, primary);
+        color: map.get($colors, white);
+        
+        &:hover {
+          background: map.get($colors, accent);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(map.get($colors, primary), 0.3);
+        }
+      }
+      
+      &.demo-link {
+        background: transparent;
+        color: map.get($colors, primary);
+        border: 2px solid map.get($colors, primary);
+        
+        &:hover {
+          background: map.get($colors, primary);
+          color: map.get($colors, white);
+          transform: translateY(-2px);
+        }
+      }
+      
+      &.cert-link {
+        background: linear-gradient(135deg, map.get($colors, secondary), map.get($colors, accent));
+        color: map.get($colors, white);
+        
+        &:hover {
+          background: linear-gradient(135deg, map.get($colors, accent), map.get($colors, primary));
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(map.get($colors, secondary), 0.3);
+        }
+      }
+      
+      i {
+        margin-right: 8px;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card {
+  animation: fadeInUp 0.6s ease-out;
+  
+  &:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  &:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projects-container {
+    padding: 40px 15px;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .project-card {
+    .project-header,
+    .project-content,
+    .project-tech-stack,
+    .project-links {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+    .project-links {
+      flex-direction: column;
+      
+      .project-link {
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// WhatsApp QR Code Styles
+.qr-whatsapp {
+  display: inline-block;
+  margin-left: 10px;
+  
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid map.get($colors, secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-color: #25D366; // WhatsApp green
+    }
+  }
+  
+  @media (max-width: 768px) {
+    img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
+
+/* ============================================
+   SECCIÓN SOBRE MÍ - DISEÑO MODERNO
+   ============================================ */
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  background-color: map.get($colors, white);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 60px;
+  
+  .about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: map.get($colors, primary);
+    margin-bottom: 1rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, map.get($colors, primary), map.get($colors, secondary));
+      border-radius: 2px;
+    }
+    
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
+    }
+  }
+  
+  .about-subtitle {
+    font-size: 1.2rem;
+    color: map.get($colors, secondary);
+    font-weight: 400;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.about-intro {
+  .intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: map.get($colors, text);
+    margin-bottom: 30px;
+    
+    &.highlight {
+      font-weight: 600;
+      color: map.get($colors, primary);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+  } 
+}
+
+.about-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  .skills-section {
+    margin-bottom: 0px;
+    
+    h3 {
+      color: map.get($colors, primary);
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      
+      i {
+        margin-right: 12px;
+        color: map.get($colors, accent);
+        font-size: 1.2rem;
+      }
+    }
+    
+    .skills-grid {
+      display: grid;
+      gap: 15px;
+      
+      &.two-column {
+        grid-template-columns: 1fr 1fr;
+        
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+    
+    .skill-category {
+      background: map.get($colors, white);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(map.get($colors, secondary), 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      h4 {
+        color: map.get($colors, primary);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        
+        i {
+          margin-right: 8px;
+          color: map.get($colors, accent);
+        }
+      }
+      
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+          font-size: 0.95rem;
+          color: map.get($colors, text);
+          
+          &::before {
+            content: '▸';
+            color: map.get($colors, secondary);
+            margin-right: 10px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+.education-timeline {
+  background: linear-gradient(135deg, map.get($colors, background), #f8f9fa);
+  padding: 40px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  
+  h3 {
+    color: map.get($colors, primary);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    i {
+      margin-right: 15px;
+      color: map.get($colors, accent);
+    }
+  }
+  
+  .timeline-item {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 30px;
+    
+    &:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 30px;
+      bottom: -30px;
+      width: 2px;
+      background: linear-gradient(180deg, map.get($colors, primary), map.get($colors, secondary));
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      background: map.get($colors, accent);
+      border-radius: 50%;
+      border: 3px solid map.get($colors, white);
+      box-shadow: 0 0 0 2px map.get($colors, primary);
+    }
+    
+    .timeline-content {
+      background: map.get($colors, white);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid map.get($colors, primary);
+      
+      .timeline-title {
+        color: map.get($colors, primary);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      
+      .timeline-institution {
+        color: map.get($colors, secondary);
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+      
+      .timeline-date {
+        color: map.get($colors, accent);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      
+      .timeline-description {
+        color: map.get($colors, text);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+.languages-section {
+  text-align: center;
+  
+  h3 {
+    color: map.get($colors, primary);
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    i {
+      margin-right: 12px;
+      color: map.get($colors, accent);
+    }
+  }
+  
+  .languages-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    
+    .language-item {
+      background: map.get($colors, white);
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(map.get($colors, secondary), 0.1);
+      transition: all 0.3s ease;
+      min-width: 150px;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .language-name {
+        color: map.get($colors, primary);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      
+      .language-level {
+        color: map.get($colors, secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* Animaciones para la sección sobre mí */
+.about-intro,
+.about-skills,
+.additional-skills,
+.education-timeline,
+.languages-section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.about-skills {
+  animation-delay: 0.1s;
+}
+
+.additional-skills {
+  animation-delay: 0.2s;
+}
+
+.education-timeline {
+  animation-delay: 0.3s;
+}
+
+.languages-section {
+  animation-delay: 0.4s;
+}
+
+/* ============================================
+   SECCIÓN CONTACTO - DISEÑO MODERNO
+   ============================================ */
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  background-color: map.get($colors, white);
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 60px;
+  
+  .contact-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: map.get($colors, primary);
+    margin-bottom: 1rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, map.get($colors, primary), map.get($colors, secondary));
+      border-radius: 2px;
+    }
+    
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
+    }
+  }
+  
+  .contact-subtitle {
+    font-size: 1.2rem;
+    color: map.get($colors, secondary);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.contact-info-section {
+  .contact-intro {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: map.get($colors, text);
+    margin-bottom: 40px;
+    text-align: center;
+    
+    &.highlight {
+      font-weight: 600;
+      color: map.get($colors, primary);
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+  }
+  
+  .personal-details {
+    background: linear-gradient(135deg, map.get($colors, background), #f8f9fa);
+    padding: 30px;
+    border-radius: 16px;
+    border-left: 4px solid map.get($colors, primary);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    
+    h3 {
+      color: map.get($colors, primary);
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      i {
+        margin-right: 12px;
+        color: map.get($colors, accent);
+        font-size: 1.3rem;
+      }
+    }
+    
+    .contact-details-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 18px;
+        font-size: 1rem;
+        color: map.get($colors, text);
+        padding: 12px;
+        background: map.get($colors, white);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          transform: translateX(5px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        i {
+          width: 25px;
+          margin-right: 15px;
+          color: map.get($colors, primary);
+          font-size: 1.2rem;
+          text-align: center;
+        }
+        
+        a {
+          color: map.get($colors, primary);
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s ease;
+          
+          &:hover {
+            color: map.get($colors, accent);
+          }
+        }
+        
+        .contact-label {
+          font-weight: 600;
+          color: map.get($colors, primary);
+        }
+      }
+    }
+  }
+}
+
+.contact-social-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .social-title {
+    color: map.get($colors, primary);
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    
+    i {
+      margin-right: 12px;
+      color: map.get($colors, accent);
+      font-size: 1.3rem;
+    }
+  }
+  
+  .social-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      padding: 20px 25px;
+      background: map.get($colors, white);
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(map.get($colors, secondary), 0.1);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        
+        &::before {
+          left: 100%;
+        }
+        
+        .social-icon {
+          transform: scale(1.1);
+        }
+      }
+      
+      &.linkedin {
+        &:hover {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+          
+          .social-text {
+            color: white;
+          }
+        }
+      }
+      
+      &.github {
+        &:hover {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+          
+          .social-text {
+            color: white;
+          }
+        }
+      }
+      
+      &.email {
+        &:hover {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+          
+          .social-text {
+            color: white;
+          }
+        }
+      }
+      
+      &.whatsapp {
+        &:hover {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+          
+          .social-text {
+            color: white;
+          }
+        }
+      }
+      
+      .social-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        
+        &.linkedin {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+        }
+        
+        &.github {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+        }
+        
+        &.email {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+        }
+        
+        &.whatsapp {
+          background: linear-gradient(135deg, #4a4a4a, #2d2d2d);
+          color: white;
+        }
+      }
+      
+      .social-content {
+        flex: 1;
+        
+        .social-platform {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: map.get($colors, primary);
+          margin-bottom: 4px;
+          transition: color 0.3s ease;
+        }
+        
+        .social-text {
+          font-size: 0.9rem;
+          color: map.get($colors, secondary);
+          transition: color 0.3s ease;
+        }
+      }
+    }
+  }
+}
+
+.contact-cta {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  background: linear-gradient(135deg, map.get($colors, background), #f8f9fa);
+  border-radius: 16px;
+  
+  .cta-title {
+    color: map.get($colors, primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  .cta-text {
+    color: map.get($colors, secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 25px;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 15px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      
+      i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+      }
+      
+      &.primary {
+        background: map.get($colors, primary);
+        color: map.get($colors, white);
+        
+        &:hover {
+          background: map.get($colors, accent);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(map.get($colors, primary), 0.3);
+        }
+      }
+      
+      &.secondary {
+        background: transparent;
+        color: map.get($colors, primary);
+        border: 2px solid map.get($colors, primary);
+        
+        &:hover {
+          background: map.get($colors, primary);
+          color: map.get($colors, white);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+/* Animaciones para la sección contacto */
+.contact-info-section,
+.contact-social-section,
+.contact-cta {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.contact-social-section {
+  animation-delay: 0.1s;
+}
+
+.contact-cta {
+  animation-delay: 0.2s;
+}
+
+/* Responsive para contacto */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 40px 15px;
+  }
+  
+  .contact-content {
+    gap: 30px;
+  }
+  
+  .personal-details {
+    padding: 20px;
+  }
+  
+  .social-links {
+    max-width: 100%;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    
+    .cta-button {
+      width: 100%;
+      max-width: 250px;
+      justify-content: center;
+    }
+  }
+}
+
+/* ============================================
+   SECCIONES ADICIONALES CENTRADAS
+   ============================================ */
+
+.additional-skills {
+  max-width: 1200px;
+  margin: 20px auto 60px; // Añadido más margen inferior para separar de Formación Académica
+  padding: 0 20px;
+  
+  // Container para mostrar las dos secciones lado a lado
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .skills-section {
+    margin-bottom: 0;
+    text-align: center;
+    
+    h3 {
+      color: map.get($colors, primary);
+      font-size: 1.4rem; // Mismo tamaño que habilidades técnicas
+      margin-bottom: 25px; // Mismo margen que habilidades técnicas
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      i {
+        margin-right: 12px;
+        color: map.get($colors, accent);
+        font-size: 1.2rem; // Mismo tamaño que habilidades técnicas
+      }
+    }
+    
+    // Para secciones que tienen solo una categoría (como "Frameworks y Librerías")
+    &.single-category {
+      .skills-grid {
+        display: flex;
+        justify-content: center;
+      
+        .skill-category {
+          max-width: 250px; // Limitamos el ancho para que no se extienda demasiado
+          background: map.get($colors, white);
+          padding: 20px; // Mismo padding que habilidades técnicas
+          border-radius: 10px; // Mismo border-radius que habilidades técnicas
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); // Misma sombra que habilidades técnicas
+          border: 1px solid rgba(map.get($colors, secondary), 0.1);
+          transition: all 0.3s ease;
+          min-height: 200px; // Altura mínima para consistencia
+          
+          &:hover {
+            transform: translateY(-3px); // Mismo hover que habilidades técnicas
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); // Misma sombra hover que habilidades técnicas
+          }
+          
+          h4 {
+            color: map.get($colors, primary);
+            font-size: 1.1rem; // Mismo tamaño que habilidades técnicas
+            font-weight: 600;
+            margin-bottom: 15px; // Mismo margen que habilidades técnicas
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            i {
+              margin-right: 8px; // Mismo margen que habilidades técnicas
+              color: map.get($colors, accent);
+            }
+          }
+          
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left; // Alinear el contenido a la izquierda
+            
+            li {
+              display: flex;
+              align-items: center;
+              margin-bottom: 8px; // Mismo margen que habilidades técnicas
+              font-size: 0.95rem; // Mismo tamaño que habilidades técnicas
+              color: map.get($colors, text);
+              
+              &::before {
+                content: '▸';
+                color: map.get($colors, secondary);
+                margin-right: 10px;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    // Para secciones de cualidades personales
+    &.personal-qualities {
+      .skills-grid.two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px; // Mismo gap que habilidades técnicas
+        
+        .skill-category {
+          max-width: 250px; // Limitamos el ancho para que no se extienda demasiado
+          background: map.get($colors, white);
+          padding: 20px; // Mismo padding que habilidades técnicas
+          border-radius: 10px; // Mismo border-radius que habilidades técnicas
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); // Misma sombra que habilidades técnicas
+          border: 1px solid rgba(map.get($colors, secondary), 0.1);
+          transition: all 0.3s ease;
+          min-height: 200px; // Altura mínima para consistencia
+          
+          &:hover {
+            transform: translateY(-3px); // Mismo hover que habilidades técnicas
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); // Misma sombra hover que habilidades técnicas
+          }
+
+          h4 {
+            color: map.get($colors, primary);
+            font-size: 1.1rem; // Mismo tamaño que habilidades técnicas
+            font-weight: 600;
+            margin-bottom: 15px; // Mismo margen que habilidades técnicas
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            i {
+              margin-right: 8px; // Mismo margen que habilidades técnicas
+              color: map.get($colors, accent);
+            }
+          }
+          
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            
+            li {
+              display: flex;
+              align-items: center;
+              margin-bottom: 8px; // Mismo margen que habilidades técnicas
+              font-size: 0.95rem; // Mismo tamaño que habilidades técnicas
+              color: map.get($colors, text);
+              
+              &::before {
+                content: '▸';
+                color: map.get($colors, secondary);
+                margin-right: 10px;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+        
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    margin-top: 20px; // Reducido también para móviles
+    padding: 0 15px;
+  }
+}
