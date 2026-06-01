@@ -75,6 +75,30 @@
             text-decoration: underline;
         }
 
+        .cv-contact-item-qr {
+            align-items: center;
+        }
+
+        .cv-contact-item-qr > span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .cv-contact-item-qr .qr-whatsapp {
+            display: inline-block;
+            margin-left: 0;
+        }
+
+        .cv-contact-item-qr .qr-whatsapp img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+        }
+
         .cv-section {
             margin-bottom: 35px;
         }
@@ -250,6 +274,11 @@
                 gap: 10px;
             }
 
+            .cv-contact-item-qr .qr-whatsapp img {
+                width: 150px;
+                height: 150px;
+            }
+
             .cv-entry-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -299,7 +328,7 @@
         <!-- Header -->
         <div class="cv-header">
             <h1>María Laura Calvi Alfie</h1>
-            <p class="subtitle">Estudiante de Ingeniería en Sistemas de Información</p>
+            <p class="subtitle">Estudiante avanzada de Ingeniería en Sistemas de Información</p>
             <div class="cv-contact-info">
                 <div class="cv-contact-item">
                     <i class="fas fa-map-marker-alt"></i>
@@ -321,6 +350,15 @@
                     <i class="fab fa-github"></i>
                     <a href="https://github.com/lauracalvi5" target="_blank">GitHub</a>
                 </div>
+                <div class="cv-contact-item cv-contact-item-qr">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>
+                        <span class="contact-label">WhatsApp:</span>
+                        <a class="qr-whatsapp" href="https://wa.me/5493436416835" target="_blank" rel="noopener noreferrer">
+                            <img src="../img/WhatsApp Image 2025-08-12 at 21.44.33.jpeg" alt="QR WhatsApp">
+                        </a>
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -328,7 +366,10 @@
         <div class="cv-section">
             <h2><i class="fas fa-user"></i> Perfil Profesional</h2>
             <p style="color: #555; line-height: 1.6;">
-                Estudiante de Ingeniería en Sistemas de Información con una fuerte vocación por la tecnología y desarrollo web. Experiencia en desarrollo full stack, con especial enfoque en arquitecturas cliente-servidor, creación de interfaces intuitivas y aplicaciones responsivas. Apasionada por resolver problemas técnicos, aprender nuevas tecnologías y colaborar en equipos multidisciplinarios para crear soluciones innovadoras y de calidad.
+                Estudiante de Ingeniería en Sistemas de Información (UTN FR Rosario). Formación en desarrollo full stack, integración de APIs REST y bases de datos. Busco una pasantía para seguir aprendiendo, sumar experiencia práctica y aportar desde una base técnica sólida.
+            </p>
+            <p style="color: #555; line-height: 1.6; margin-top: 10px;">
+                Disponibilidad para pasantía part time (4 horas), en Rosario.
             </p>
         </div>
 
@@ -343,7 +384,7 @@
                 </div>
                 <p class="cv-entry-subtitle">UTN Facultad Regional Rosario</p>
                 <p class="cv-entry-description">
-                    Cursando materias de 3er y 4to año. Formación sólida en análisis de sistemas, diseño de software, investigación operativa, paradigmas de programación y administración de recursos.
+                    Cursando materias de 4to año. Enfoque en diseño de arquitecturas y desarrollo de software. Participación en proyectos integradores académicos.
                 </p>
             </div>
 
@@ -355,6 +396,7 @@
                 <p class="cv-entry-subtitle">Codo a Codo - Buenos Aires Ciudad</p>
                 <p class="cv-entry-description">
                     Formación integral en desarrollo web full stack. Cobertura completa de frontend, backend, bases de datos y arquitectura cliente-servidor. Proyecto final certificado.
+                    <a href="https://drive.google.com/file/d/1sG9F5yRlFCBQ-Xg8jzEyanMPp156eEyQ/view" target="_blank" rel="noopener noreferrer">Ver Certificado</a>
                 </p>
             </div>
 
@@ -366,6 +408,7 @@
                 <p class="cv-entry-subtitle">CoderHouse</p>
                 <p class="cv-entry-description">
                     Especialización en desarrollo web frontend. Enfoque en mejores prácticas, SEO, optimización de rendimiento y experiencia de usuario. Proyecto final certificado.
+                    <a href="https://drive.google.com/file/d/1O66xZgP0BE9EVrc4g0y8gpjBixmxYsNX/view" target="_blank" rel="noopener noreferrer">Ver Certificado</a>
                 </p>
             </div>
 
@@ -381,21 +424,23 @@
             </div>
         </div>
 
-        <!-- Experiencia Profesional -->
+        <!-- Experiencia Relevante -->
         <div class="cv-section">
-            <h2><i class="fas fa-briefcase"></i> Experiencia Profesional</h2>
+            <h2><i class="fas fa-briefcase"></i> Experiencia Relevante</h2>
             
             <div class="cv-entry">
                 <div class="cv-entry-header">
                     <span class="cv-entry-title">Community Manager & Content Creator</span>
-                    <span class="cv-entry-date">2024 - Presente</span>
+                    <span class="cv-entry-date">2025- Presente</span>
                 </div>
                 <p class="cv-entry-subtitle">Sabium - Plataforma Educativa</p>
                 <p class="cv-entry-description">
                     • Creación de contenido digital y gestión de redes sociales<br>
+                    • Diseño y desarrollo de la página pública de Sabium<br>
+                    • Diseño de la estética general de la plataforma<br>
                     • Desarrollo de materiales promocionales y demostraciones HTML animadas<br>
-                    • Prospecting y outreach a instituciones educativas<br>
-                    • Colaboración en desarrollo técnico de la plataforma
+                    • Relevamiento de métricas de desempeño digital para evaluar resultados de campañas<br>
+                    • Colaboración con equipos de producto, negocio y desarrollo en iniciativas técnicas
                 </p>
             </div>
 
@@ -407,8 +452,8 @@
                 <p class="cv-entry-subtitle">UTN Facultad Regional Rosario</p>
                 <p class="cv-entry-description">
                     • Desarrollo de proyectos integradores académicos<br>
-                    • Trabajos prácticos en arquitectura de software y análisis de sistemas<br>
-                    • Investigación operativa y optimización de procesos
+                    • Trabajos prácticos en arquitectura de software, análisis de sistemas e integración de APIs<br>
+                    • Investigación operativa, modelado y optimización de procesos con enfoque analítico
                 </p>
             </div>
         </div>
@@ -432,8 +477,9 @@
                     <h4><i class="fas fa-server"></i> Backend</h4>
                     <ul>
                         <li>Java (JSP, Servlets)</li>
-                        <li>Node.js (en aprendizaje)</li>
-                        <li>Express (en aprendizaje)</li>
+                        <li>Node.js y Express (en aprendizaje)</li>
+                        <li>Python para scripting y automatización</li>
+                        <li>Integraciones con APIs REST</li>
                         <li>Maven</li>
                         <li>Apache Tomcat</li>
                     </ul>
@@ -442,10 +488,10 @@
                 <div class="cv-skill-category">
                     <h4><i class="fas fa-database"></i> Bases de Datos</h4>
                     <ul>
-                        <li>MySQL/MariaDB</li>
+                        <li>MySQL</li>
                         <li>MongoDB (en aprendizaje)</li>
                         <li>Programación SQL</li>
-                        <li>Manejo de JSON</li>
+                        <li>Manejo de JSON y transformación de datos</li>
                     </ul>
                 </div>
 
@@ -455,7 +501,7 @@
                         <li>Git & GitHub</li>
                         <li>NetBeans, VS Code</li>
                         <li>JIRA, Trello</li>
-                        <li>Canva, Figma (básico)</li>
+                        <li>Canva, Figma</li>
                     </ul>
                 </div>
 
@@ -491,7 +537,7 @@
                 </div>
                 <div class="cv-language-item">
                     <div class="cv-language-name">Inglés</div>
-                    <div class="cv-language-level">Nivel B1 (FCE)</div>
+                    <div class="cv-language-level">Inglés técnico - Nivel B1 (FCE)</div>
                 </div>
                 <div class="cv-language-item">
                     <div class="cv-language-name">Italiano</div>
@@ -500,20 +546,6 @@
             </div>
         </div>
 
-        <!-- Certificaciones & Reconocimientos -->
-        <div class="cv-section">
-            <h2><i class="fas fa-certificate"></i> Certificaciones</h2>
-            
-            <div class="cv-entry">
-                <p class="cv-entry-title">Certificado - Curso Full Stack Java</p>
-                <p class="cv-entry-date">Codo a Codo, 2024</p>
-            </div>
-
-            <div class="cv-entry">
-                <p class="cv-entry-title">Certificado - Curso de Desarrollo Web</p>
-                <p class="cv-entry-date">CoderHouse, 2024</p>
-            </div>
-        </div>
 
         <!-- Acciones -->
         <div class="cv-actions">
@@ -528,7 +560,7 @@
 </main>
 
 <footer>
-    &copy; 2025 Laura Calvi - Todos los derechos reservados.
+    &copy; 2026 Laura Calvi - Todos los derechos reservados.
 </footer>
 
 <!-- Bootstrap JS -->
